@@ -36,8 +36,11 @@ out = alexnet(batch_t)
 with open("./pytorch/pretreined_models_for_image_classification/imagenet_classes.txt") as f:
     classes = [line.strip() for line in f.readlines()]
 
+# otendo os indices das classes mais prováveis
 _, indeces = torch.sort(out, descending=True)
 
+# calculando a porcentagem de confiança para cada classe
 percentage = torch.nn.functional.softmax(out, dim=1)[0] * 100 # Obtendo a porcentagem de confiança para cada classe
 
-print(classes[indeces[0]], percentage[indeces[0]].item())
+# vizualizando as 5 classes mais prováveis com suas respectivas porcentagens
+print([(classes[idx], percentage[idx].item()) for idx in indeces[0][:5]])
