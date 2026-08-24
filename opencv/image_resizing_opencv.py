@@ -5,6 +5,7 @@ import numpy as np
 # read the image using imread function
 image = cv2.imread("images/car.jpg")
 cv2.imshow("Original Image", image)
+cv2.waitKey()
 
 # Display the original width and height of the image
 h, w, c = image.shape
